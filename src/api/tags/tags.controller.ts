@@ -2,6 +2,10 @@ import { Request, Response } from "express";
 import Tag from "../../models/Tags";
 import Post from "../../models/Post";
 
+export const createTag = async (req: Request, res: Response) => {
+    const tag = await Tag.create(req.body);
+    res.status(201).json(tag);
+};
 export const addTagToPost = async (req: Request, res: Response) => {
     const { postId, tagsId } = req.params;
     const post = await Post.findByIdAndUpdate(postId, 
